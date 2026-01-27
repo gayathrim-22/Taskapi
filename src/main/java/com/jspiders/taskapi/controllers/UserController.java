@@ -19,14 +19,12 @@ public class UserController
     //immutable
     private final AppUserServiceImpl2 appUserService;
     @Autowired
-    public UserController(AppUserServiceImpl2 appUserService)
-    {
+    public UserController(AppUserServiceImpl2 appUserService) {
         this.appUserService = appUserService;
     }
 
     @PostMapping
-    public ResponseEntity<CreateUserResponse> addUser(@RequestBody @Valid CreateUserRequest createUserRequest)
-    {
+    public ResponseEntity<CreateUserResponse> addUser(@RequestBody @Valid CreateUserRequest createUserRequest) {
         log.info("inside addUser() createUserRequest : {}",createUserRequest);
         ResponseEntity<CreateUserResponse> response = appUserService.createUser(createUserRequest);
         log.info("inside addUser() : User created");
@@ -35,15 +33,14 @@ public class UserController
 
     @PutMapping
     public ResponseEntity<String> updateUser(){
-        log.info("updateUser()");
-        System.out.println("this is UserController --> updateUser()");
+        log.info("this is UserController-->updateUser()");
         ResponseEntity<String> response = appUserService.updateUser();
         return response;
     }
 
     @DeleteMapping
     ResponseEntity<String> deleteUser(String email,String mobile,String password){
-        System.out.println("this is UserController --> deleteUser()");
+        log.info("this is UserController --> deleteUser()");
         ResponseEntity<String> response = appUserService.deleteUser(email,mobile,password);
         return response;
     }
@@ -71,8 +68,7 @@ public class UserController
     }
 
     @PostMapping("/login")
-    ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest)
-    {
+    ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
         log.info("login()");
         ResponseEntity<LoginResponse> response = appUserService.login(loginRequest);
         return response;

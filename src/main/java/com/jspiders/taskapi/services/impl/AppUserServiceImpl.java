@@ -47,36 +47,29 @@ public class AppUserServiceImpl implements AppUserService
         log.info("inside createUser() : User created");
 
         //return response
-        return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @Override
     public ResponseEntity<String> updateUser() {
-        System.out.println("this is AppUserServiceImpl --> updateUser()");
-
+        log.info("this is AppUserServiceImpl --> updateUser()");
         //logics
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body("User updated");
+        return ResponseEntity.status(HttpStatus.OK).body("User updated");
     }
 
     @Override
     public ResponseEntity<String> deleteUser(String email, String mobile, String password)
     {
-        System.out.println("this is AppUserServiceImpl --> deleteUser()");
+        log.info("this is AppUserServiceImpl --> deleteUser()");
 
         //logics
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body("User deleted");
+        return ResponseEntity.status(HttpStatus.OK).body("User deleted");
     }
 
     @Override
     public ResponseEntity<List<AppUserDTO>> getAllUsers(Long userId)
     {
-        System.out.println("this is AppUserServiceImpl --> getAllUsers()");
+        log.info("this is AppUserServiceImpl --> getAllUsers()");
 
         //database ops (GET ALL USERS FROM DB)
         Collection<AppUser> values = userDb.values();
@@ -91,9 +84,7 @@ public class AppUserServiceImpl implements AppUserService
         }
 
         //return the response
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(appUserDTOList);
+        return ResponseEntity.status(HttpStatus.OK).body(appUserDTOList);
     }
 
     @Override
@@ -117,9 +108,7 @@ public class AppUserServiceImpl implements AppUserService
         AppUserDTO response = mapper.convertValue(appUser,AppUserDTO.class);
 
         //return response object
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @Override

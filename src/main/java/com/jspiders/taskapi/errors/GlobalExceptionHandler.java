@@ -27,7 +27,7 @@ public class GlobalExceptionHandler
     @ExceptionHandler(NullPointerException.class)
     public ResponseEntity<String> nullPointerExceptionHandler(NullPointerException ex)
     {
-        System.out.println("Handling NullPointerException");
+        log.info("Handling NullPointerException");
         ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Something went wrong");
     }
@@ -35,7 +35,7 @@ public class GlobalExceptionHandler
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<String> illegalArgumentExceptionHandler(IllegalArgumentException ex)
     {
-        System.out.println("Handling illegalArgumentException");
+        log.info("Handling illegalArgumentException");
         ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler
     @ExceptionHandler(InvalidNameException.class)
     public ResponseEntity<String> invalidNameExceptionHandler(InvalidNameException ex)
     {
-        System.out.println("Handling illegalArgumentException");
+        log.info("Handling illegalArgumentException");
         ex.printStackTrace();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
