@@ -30,7 +30,6 @@ public class AppUserServiceImpl implements AppUserService
         log.info("inside createUser() {}",createUserRequest);
         //execute business logics
 
-
         //save data to database
         //Long userId = saveUser(createUserRequest);
         AppUser appUser  =  mapper.convertValue(createUserRequest,AppUser.class);
@@ -75,7 +74,7 @@ public class AppUserServiceImpl implements AppUserService
     }
 
     @Override
-    public ResponseEntity<List<AppUserDTO>> getAllUsers()
+    public ResponseEntity<List<AppUserDTO>> getAllUsers(Long userId)
     {
         System.out.println("this is AppUserServiceImpl --> getAllUsers()");
 
@@ -125,6 +124,11 @@ public class AppUserServiceImpl implements AppUserService
 
     @Override
     public ResponseEntity<AppUserDTO> getUserByEmail(String email) {
+        return null;
+    }
+
+    @Override
+    public ResponseEntity<LoginResponse> login(LoginRequest loginRequest) {
         return null;
     }
 

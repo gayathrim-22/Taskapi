@@ -1,8 +1,7 @@
 package com.jspiders.taskapi.controllers;
 
-import com.jspiders.taskapi.data.users.AppUserDTO;
-import com.jspiders.taskapi.data.users.CreateUserRequest;
-import com.jspiders.taskapi.data.users.CreateUserResponse;
+import com.jspiders.taskapi.data.users.*;
+import com.jspiders.taskapi.services.AppUserService;
 import com.jspiders.taskapi.services.impl.AppUserServiceImpl2;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @Slf4j
-public class UserController {
+public class UserController
+{
     //immutable
     private final AppUserServiceImpl2 appUserService;
     @Autowired
@@ -49,9 +49,11 @@ public class UserController {
     }
 
     @GetMapping
-    ResponseEntity<List<AppUserDTO>> getAllUsers(){
-        System.out.println("this is UserController --> getAllUsers()");
-        ResponseEntity<List<AppUserDTO>> response = appUserService.getAllUsers();
+    ResponseEntity<List<AppUserDTO>> getAllUsers(@RequestHeader Long userId){
+        log.info("getAllUsers()");
+        log.info("userId {}",userId);
+
+        ResponseEntity<List<AppUserDTO>> response = appUserService.getAllUsers(userId);
         return response;
     }
     @GetMapping("/{userId}")
@@ -65,6 +67,14 @@ public class UserController {
     ResponseEntity<AppUserDTO> getUserByEmail(@PathVariable String email){
         log.info("getUserByEmail()");
         ResponseEntity<AppUserDTO> response = appUserService.getUserByEmail(email);
+        return response;
+    }
+
+    @PostMapping("/login")
+    ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest)
+    {
+        log.info("login()");
+        ResponseEntity<LoginResponse> response = appUserService.login(loginRequest);
         return response;
     }
 }
