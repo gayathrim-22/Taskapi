@@ -15,4 +15,5 @@ public interface AppUserService {
     ResponseEntity<AppUserDTO> getUserByEmail(String email);
     ResponseEntity<LoginResponse> login(LoginRequest loginRequest);
     ResponseEntity<String> updateUserEmail(Long userId,UpdateUserEmailRequest updateUserEmailRequest);
+    ResponseEntity<String> updateUserName(Long userId,UpdateUserNameReq updateUserNameReq);
 }

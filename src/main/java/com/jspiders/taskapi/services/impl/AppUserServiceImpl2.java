@@ -130,7 +130,7 @@ public class AppUserServiceImpl2 implements AppUserService {
             //userId = String.valueOf(appUser.getUserId());
         }
         else {
-            //if user with email and password DO NOT exists throw execption
+            //if user with email and password DO NOT exist throw exception
             throw new IllegalArgumentException("Invalid Username / Password");
         }
         //return userId of the given user
@@ -155,6 +155,27 @@ public class AppUserServiceImpl2 implements AppUserService {
             appUserRepository.save(appUser);
         }
         return ResponseEntity.ok("User Email updated");
+    }
+
+    @Override
+    public ResponseEntity<String> updateUserName(Long userId, UpdateUserNameReq updateUserNameReq) {
+        log.info("This is updateUserEmail");
+        //verify the user
+        boolean isPresent=appUserRepository.existsById(userId);
+        if (isPresent==false){
+            throw new IllegalArgumentException("SECURITY ERROR : UserId is not valid");
+        }
+        Optional<AppUser> appUserOptional = appUserRepository.findByName(updateUserNameReq.getOldUname(), updateUserNameReq.getUserId());
+        if(appUserOptional.isEmpty()){
+            throw new IllegalArgumentException("user with username and userid is not found");
+        }
+        else {
+            AppUser appUser=appUserOptional.get();
+            appUser.setName(updateUserNameReq.getNewUname());
+            appUserRepository.save(appUser);
+        }
+        return ResponseEntity.ok("Username updated");
+
     }
 
 }
