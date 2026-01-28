@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import tools.jackson.databind.ObjectMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,8 +75,18 @@ public class AppUserServiceImpl2 implements AppUserService {
         {
             throw new IllegalArgumentException("Security ERROR : USERID is not VALID");
         }
-        //BL
-        return null;
+
+        //BL --- database operations(GET ALL USERS FROM DB)
+        List<AppUser> appUserList=appUserRepository.findAll();
+        List<AppUserDTO> appUserDTOList=new ArrayList<>();
+
+        //business logics(Remove password data from response)
+        //build the response
+        for (AppUser appUser:appUserList){
+            AppUserDTO appUserDTO=mapper.convertValue(appUser,AppUserDTO.class);
+            appUserDTOList.add(appUserDTO);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(appUserDTOList);
     }
 
     @Override
@@ -88,9 +99,7 @@ public class AppUserServiceImpl2 implements AppUserService {
         AppUser appUser = optional.get();
         AppUserDTO response = mapper.convertValue(appUser,AppUserDTO.class);
         //return response object
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 
     @Override
@@ -124,9 +133,28 @@ public class AppUserServiceImpl2 implements AppUserService {
             //if user with email and password DO NOT exists throw execption
             throw new IllegalArgumentException("Invalid Username / Password");
         }
-
         //return userId of the given user
         return ResponseEntity.ok(loginResponse);
+    }
+
+    @Override
+    public ResponseEntity<String> updateUserEmail(Long userId, UpdateUserEmailRequest updateUserEmailRequest) {
+        log.info("this is updateUserEmail");
+        //verify the user
+        boolean isPresent=appUserRepository.existsById(userId);
+        if (isPresent==false){
+            throw new IllegalArgumentException("SECURITY ERROR : UserId is not valid");
+        }
+        Optional<AppUser> appUserOptional = appUserRepository.findByEmailAndUserId(updateUserEmailRequest.getOldEmail(), updateUserEmailRequest.getUserId());
+        if(appUserOptional.isEmpty()){
+            throw new IllegalArgumentException("user with email and userid is not found");
+        }
+        else {
+            AppUser appUser=appUserOptional.get();
+            appUser.setEmail(updateUserEmailRequest.getNewEmail());
+            appUserRepository.save(appUser);
+        }
+        return ResponseEntity.ok("User Email updated");
     }
 
 }
