@@ -6,12 +6,12 @@ import lombok.Data;
 
 @Data
 public class UpdateUserMobileReq {
-//    @NotBlank(message = "new mobile number cannot be empty")
-//    private String newMobileNum;
-//
-//    @NotBlank(message = "old mobile number cannot be empty")
-//    private String oldMobileNum;
-//
-//    @NotNull(message = "Requires userId")
-//    private Long userId;
+    @NotBlank(message = "new mobile number cannot be empty")
+    private String newMobileNum;
+
+    @NotBlank(message = "old mobile number cannot be empty")
+    private String oldMobileNum;
+
+    @NotNull(message = "Requires userId")
+    private Long userId;
 }
