@@ -26,15 +26,11 @@ public class AppUserServiceImpl2 implements AppUserService {
     public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest createUserRequest) {
 
         //Data verification
-        boolean exists = appUserRepository.
-                existsByEmailOrMobile(createUserRequest.getEmail(),
-                        createUserRequest.getMobile());
+        boolean exists = appUserRepository.existsByEmailOrMobile(createUserRequest.getEmail(),createUserRequest.getMobile());
 
-        if(exists == true)
-        {
+        if(exists == true){
             throw new DuplicateUserException("User with given email/mobile already exists");
         }
-
 
         //Convert request to ENTITY
         AppUser appUser = mapper.convertValue(createUserRequest, AppUser.class);
@@ -165,7 +161,7 @@ public class AppUserServiceImpl2 implements AppUserService {
         if (isPresent==false){
             throw new IllegalArgumentException("SECURITY ERROR : UserId is not valid");
         }
-        Optional<AppUser> appUserOptional = appUserRepository.findByName(updateUserNameReq.getOldUname(), updateUserNameReq.getUserId());
+        Optional<AppUser> appUserOptional = appUserRepository.findByNameAndUserId(updateUserNameReq.getOldUname(), updateUserNameReq.getUserId());
         if(appUserOptional.isEmpty()){
             throw new IllegalArgumentException("user with username and userid is not found");
         }
@@ -175,7 +171,6 @@ public class AppUserServiceImpl2 implements AppUserService {
             appUserRepository.save(appUser);
         }
         return ResponseEntity.ok("Username updated");
-
     }
 
 }

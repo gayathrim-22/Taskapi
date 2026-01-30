@@ -31,10 +31,9 @@ public class AppUserServiceImpl implements AppUserService
         //execute business logics
 
         //save data to database
-        //Long userId = saveUser(createUserRequest);
+//        Long userId = saveUser(createUserRequest);
         AppUser appUser  =  mapper.convertValue(createUserRequest,AppUser.class);
         appUser.setActive(true);
-
 
         AppUser appUser1 = appUserRepository.save(appUser);
         Long userId = appUser1.getUserId();

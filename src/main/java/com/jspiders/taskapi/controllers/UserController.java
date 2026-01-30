@@ -14,8 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/users")
 @Slf4j
-public class UserController
-{
+public class UserController{
     //immutable
     private final AppUserServiceImpl2 appUserService;
     @Autowired
