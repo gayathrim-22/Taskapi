@@ -37,10 +37,17 @@ public class UserController{
 //        return response;
 //    }
 
-    @PatchMapping
-    public ResponseEntity<String> updateUserName(@RequestHeader Long userId,@RequestBody @Valid UpdateUserNameReq updateUserNameReq){
+//    @PatchMapping
+//    public ResponseEntity<String> updateUserName(@RequestHeader Long userId,@RequestBody @Valid UpdateUserNameReq updateUserNameReq){
+//        log.info("this is UserController-->updateUser()");
+//        ResponseEntity<String> response = appUserService.updateUserName(userId,updateUserNameReq);
+//        return response;
+//    }
+
+    @PatchMapping("/mobile")
+    public ResponseEntity<String> updateUserMobile(@RequestHeader Long userId,@RequestBody @Valid UpdateUserMobileReq updateUserMobileReq){
         log.info("this is UserController-->updateUser()");
-        ResponseEntity<String> response = appUserService.updateUserName(userId,updateUserNameReq);
+        ResponseEntity<String> response = appUserService.updateUserMobile(userId,updateUserMobileReq);
         return response;
     }
 

@@ -16,4 +16,5 @@ public interface AppUserService {
     ResponseEntity<LoginResponse> login(LoginRequest loginRequest);
     ResponseEntity<String> updateUserEmail(Long userId,UpdateUserEmailRequest updateUserEmailRequest);
     ResponseEntity<String> updateUserName(Long userId,UpdateUserNameReq updateUserNameReq);
+    ResponseEntity<String> updateUserMobile(Long userId,UpdateUserMobileReq updateUserMobileReq);
 }

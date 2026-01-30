@@ -130,6 +130,11 @@ public class AppUserServiceImpl implements AppUserService
         return null;
     }
 
+    @Override
+    public ResponseEntity<String> updateUserMobile(Long userId, UpdateUserMobileReq updateUserMobileReq) {
+        return null;
+    }
+
     private void validateName(CreateUserRequest createUserRequest)
     {
         //Validation

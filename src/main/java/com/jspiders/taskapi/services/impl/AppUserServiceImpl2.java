@@ -176,4 +176,23 @@ public class AppUserServiceImpl2 implements AppUserService {
         return ResponseEntity.ok("Username updated");
     }
 
+    @Override
+    public ResponseEntity<String> updateUserMobile(Long userId, UpdateUserMobileReq updateUserMobileReq) {
+        log.info("This is  updateUserMobile() ");
+        boolean isExist=appUserRepository.existsById(userId);
+        if (isExist==false){
+            throw new IllegalArgumentException(("SECURITY ERROR : User Id is not valid"));
+        }
+        Optional<AppUser> appUserOptional=appUserRepository.findByMobileAndUserId(updateUserMobileReq.getOldMobileNum(),updateUserMobileReq.getUserId());
+        if (appUserOptional.isEmpty()){
+            throw new IllegalArgumentException("user with mobile  no and userId is not found");
+        }
+        else {
+            AppUser appUser=appUserOptional.get();
+            appUser.setMobile(updateUserMobileReq.getNewMobileNum());
+            appUserRepository.save(appUser);
+        }
+        return ResponseEntity.ok("Mobile number updated successfully");
+    }
+
 }

@@ -13,7 +13,7 @@ public interface AppUserRepository extends JpaRepository<AppUser,Long> {
     Optional<AppUser> findByEmail(String email);
     Optional<AppUser> findByEmailAndUserId(String email,Long userId);
     Optional<AppUser> findByNameAndUserId(String name, Long userId);
-
+    Optional<AppUser> findByMobileAndUserId(String mobile,Long userId);
     AppUser findByMobile(String mobile);
     AppUser findByName(String name);
     boolean existsByEmailAndPassword(String email,String password);
