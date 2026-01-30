@@ -13,8 +13,9 @@ public interface AppUserRepository extends JpaRepository<AppUser,Long> {
     Optional<AppUser> findByEmail(String email);
     Optional<AppUser> findByEmailAndUserId(String email,Long userId);
     Optional<AppUser> findByNameAndUserId(String name, Long userId);
+
     AppUser findByMobile(String mobile);
-    AppUser findByNameAndUserId(String name);
+    AppUser findByName(String name);
     boolean existsByEmailAndPassword(String email,String password);
     boolean existsByMobileAndPassword(String mobile,String password);
 
