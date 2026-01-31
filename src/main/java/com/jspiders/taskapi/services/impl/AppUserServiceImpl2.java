@@ -1,5 +1,7 @@
 package com.jspiders.taskapi.services.impl;
 
+import com.jspiders.taskapi.data.tasks.Task;
+import com.jspiders.taskapi.data.tasks.TaskRepository;
 import com.jspiders.taskapi.data.users.*;
 import com.jspiders.taskapi.errors.DuplicateUserException;
 import com.jspiders.taskapi.services.AppUserService;
@@ -16,14 +18,13 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-//@RequiredArgsConstructor
+@RequiredArgsConstructor
 @Slf4j
 public class AppUserServiceImpl2 implements AppUserService {
 
-    @Autowired
-    private AppUserRepository appUserRepository;
-    @Autowired
-    private ObjectMapper mapper;
+    private final AppUserRepository appUserRepository;
+    private final TaskRepository taskRepository;
+    private final ObjectMapper mapper;
 
     @Override
     public ResponseEntity<CreateUserResponse> createUser(CreateUserRequest createUserRequest) {
@@ -92,8 +93,7 @@ public class AppUserServiceImpl2 implements AppUserService {
     public ResponseEntity<AppUserDTO> getUserById(Long userId) {
         log.info("getUserById()");
         //perform db operations(GET USER FROM DB)
-        //AppUser appUser = userDb.get(userId);
-
+//        AppUser appUser = userDb.get(userId);
         Optional<AppUser> optional = appUserRepository.findById(userId);
         AppUser appUser = optional.get();
         AppUserDTO response = mapper.convertValue(appUser,AppUserDTO.class);
