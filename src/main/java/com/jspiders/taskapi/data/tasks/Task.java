@@ -3,10 +3,12 @@ package com.jspiders.taskapi.data.tasks;
 import com.jspiders.taskapi.data.users.AppUser;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 @Data
 @Entity
 @Table(name = "task")
+@ToString(exclude = "appUser")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +32,6 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "userId")
     private AppUser appUser;
+
+
 }

@@ -1,6 +1,8 @@
 package com.jspiders.taskapi.services.impl;
 
 import com.jspiders.taskapi.data.comments.CommentRepository;
+import com.jspiders.taskapi.data.tasks.Task;
+import com.jspiders.taskapi.data.tasks.TaskDTO;
 import com.jspiders.taskapi.data.tasks.TaskRepository;
 import com.jspiders.taskapi.data.users.*;
 import com.jspiders.taskapi.errors.DuplicateUserException;
@@ -95,9 +97,26 @@ public class AppUserServiceImpl2 implements AppUserService {
         //perform db operations(GET USER FROM DB)
 //        AppUser appUser = userDb.get(userId);
 
-        Optional<AppUser> optional = appUserRepository.findById(userId);
-        AppUser appUser = optional.get();
-        AppUserDTO response = mapper.convertValue(appUser,AppUserDTO.class);
+//        Optional<AppUser> optional = appUserRepository.findById(userId);
+//        AppUser appUser = optional.get();
+//        AppUserDTO response = mapper.convertValue(appUser,AppUserDTO.class);
+
+        //find the user by userId
+        AppUser appUser= appUserRepository.findById(userId).orElseThrow();
+        //convert appuser to appuseDto
+        AppUserDTO response=mapper.convertValue(appUser,AppUserDTO.class);
+
+        List<Task> taskList=taskRepository.findByAppUserUserId(userId);
+
+        List<TaskDTO> taskDtoList=new ArrayList<>();
+        //convert task to taskDto
+        for (Task task:taskList){
+            TaskDTO taskDTO=mapper.convertValue(task,TaskDTO.class);
+            taskDtoList.add(taskDTO);
+        }
+
+        response.setTaskList(taskDtoList);
+
         //return response object
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

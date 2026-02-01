@@ -3,11 +3,13 @@ package com.jspiders.taskapi.data.comments;
 import com.jspiders.taskapi.data.users.AppUser;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.time.LocalDate;
 
 @Data
 @Entity
+@ToString(exclude = "appUser")
 @Table(name = "comments")
 public class Comment {
     @Id

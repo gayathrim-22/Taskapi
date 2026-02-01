@@ -15,7 +15,7 @@ public class CreateTaskRequest {
     @NotBlank(message = "desc cannot be empty")
     private String description;
 
-
+    @Length(max = 10)
     private String status;
 
     @NotBlank(message = "user Id is required")

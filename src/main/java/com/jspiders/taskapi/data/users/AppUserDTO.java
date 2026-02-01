@@ -1,8 +1,8 @@
 package com.jspiders.taskapi.data.users;
 
 import com.jspiders.taskapi.data.comments.Comment;
+import com.jspiders.taskapi.data.tasks.TaskDTO;
 import lombok.Data;
-import org.springframework.scheduling.config.Task;
 
 import java.util.List;
 
@@ -13,6 +13,6 @@ public class AppUserDTO {
     private String email;
     private String mobile;
     private boolean isActive;
-    private List<Task> taskList;
+    private List<TaskDTO> taskList;
     private List<Comment> commentList;
 }

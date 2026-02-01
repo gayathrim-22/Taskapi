@@ -1,9 +1,7 @@
 package com.jspiders.taskapi.services.impl;
 
-import com.jspiders.taskapi.data.tasks.CreateTaskRequest;
-import com.jspiders.taskapi.data.tasks.Task;
-import com.jspiders.taskapi.data.tasks.TaskRepository;
-import com.jspiders.taskapi.data.tasks.UpdateTaskRequest;
+import com.jspiders.taskapi.data.tasks.*;
+import com.jspiders.taskapi.data.users.AppUser;
 import com.jspiders.taskapi.data.users.AppUserRepository;
 import com.jspiders.taskapi.services.TaskService;
 import lombok.Data;
@@ -19,6 +17,7 @@ import java.util.List;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Data
 public class TaskServiceImpl implements TaskService {
 
     private final ObjectMapper mapper;
@@ -29,9 +28,8 @@ public class TaskServiceImpl implements TaskService {
     public ResponseEntity<Task> createTask(CreateTaskRequest createTaskRequest) {
         log.info("inside createTask {}",createTaskRequest);
 
-
         //validate the userId if not present Throw NoSuchElementFoundException
-        appUserRepository.findById(createTaskRequest.getUserId()).orElseThrow();
+        AppUser appUser = appUserRepository.findById(createTaskRequest.getUserId()).orElseThrow();
 
         //Convert createTaskRequest to Task Entity
         Task task = mapper.convertValue(createTaskRequest, Task.class);
@@ -39,10 +37,12 @@ public class TaskServiceImpl implements TaskService {
         //set created and updated Dates
         task.setCreatedAt(LocalDate.now().toString());
         task.setUpdatedAt(LocalDate.now().toString());
+        task.setAppUser(appUser);
 
         //save the task to db
         Task savedTask = taskRepository.save(task);
 
+        log.info("saved {}",savedTask);
         //return the response with savedTask
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTask);
     }
@@ -53,7 +53,7 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public ResponseEntity<Task> getTaskByID(Long taskId) {
+    public ResponseEntity<TaskDTO> getTaskById(Long taskId) {
         return null;
     }
 
