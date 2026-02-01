@@ -1,6 +1,6 @@
 package com.jspiders.taskapi.services.impl;
 
-import com.jspiders.taskapi.data.tasks.Task;
+import com.jspiders.taskapi.data.comments.CommentRepository;
 import com.jspiders.taskapi.data.tasks.TaskRepository;
 import com.jspiders.taskapi.data.users.*;
 import com.jspiders.taskapi.errors.DuplicateUserException;
@@ -23,6 +23,7 @@ public class AppUserServiceImpl2 implements AppUserService {
 
     private final AppUserRepository appUserRepository;
     private final TaskRepository taskRepository;
+    private final CommentRepository commentRepository;
     private final ObjectMapper mapper;
 
     @Override

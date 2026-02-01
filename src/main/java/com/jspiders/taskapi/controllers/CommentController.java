@@ -2,8 +2,6 @@ package com.jspiders.taskapi.controllers;
 
 import com.jspiders.taskapi.data.comments.Comment;
 import com.jspiders.taskapi.data.comments.CreateCommentRequest;
-import com.jspiders.taskapi.data.tasks.CreateTaskRequest;
-import com.jspiders.taskapi.data.tasks.Task;
 import com.jspiders.taskapi.services.CommentService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

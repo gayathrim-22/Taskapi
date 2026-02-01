@@ -1,7 +1,6 @@
 package com.jspiders.taskapi.controllers;
 
 import com.jspiders.taskapi.data.users.*;
-import com.jspiders.taskapi.services.AppUserService;
 import com.jspiders.taskapi.services.impl.AppUserServiceImpl2;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

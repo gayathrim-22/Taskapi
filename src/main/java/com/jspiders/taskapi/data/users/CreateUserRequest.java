@@ -1,6 +1,5 @@
 package com.jspiders.taskapi.data.users;
 
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

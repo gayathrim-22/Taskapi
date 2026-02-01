@@ -36,5 +36,4 @@ public class AppUser {
 
     @OneToMany(mappedBy = "appUser")
     private List<Comment> commentList;
-
 }
