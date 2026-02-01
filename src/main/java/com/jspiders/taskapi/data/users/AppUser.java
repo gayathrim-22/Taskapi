@@ -1,5 +1,6 @@
 package com.jspiders.taskapi.data.users;
 
+import com.jspiders.taskapi.data.comments.Comment;
 import com.jspiders.taskapi.data.tasks.Task;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -32,4 +33,8 @@ public class AppUser {
 
     @OneToMany(mappedBy = "appUser")
     private List<Task> taskList;
+
+    @OneToMany(mappedBy = "appUser")
+    private List<Comment> commentList;
+
 }

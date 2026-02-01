@@ -7,7 +7,6 @@ import com.jspiders.taskapi.errors.DuplicateUserException;
 import com.jspiders.taskapi.services.AppUserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -94,6 +93,7 @@ public class AppUserServiceImpl2 implements AppUserService {
         log.info("getUserById()");
         //perform db operations(GET USER FROM DB)
 //        AppUser appUser = userDb.get(userId);
+
         Optional<AppUser> optional = appUserRepository.findById(userId);
         AppUser appUser = optional.get();
         AppUserDTO response = mapper.convertValue(appUser,AppUserDTO.class);
