@@ -52,7 +52,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public ResponseEntity<Comment> getCommentByID(Long commentId) {
+    public ResponseEntity<CommentDTO> getCommentByID(Long commentId) {
         return null;
     }
 

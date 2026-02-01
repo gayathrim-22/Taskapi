@@ -25,7 +25,7 @@ public class TaskController {
         return taskService.createTask(createTaskRequest);
     }
     @GetMapping("/{taskId}")
-    ResponseEntity<TaskDTO> getUserById(@PathVariable Long taskId){
+    ResponseEntity<TaskDTO> getTaskById(@PathVariable Long taskId){
         log.info("getUserById()");
         ResponseEntity<TaskDTO> response = taskService.getTaskById(taskId);
         return response;
