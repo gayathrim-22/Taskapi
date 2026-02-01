@@ -1,6 +1,7 @@
 package com.jspiders.taskapi.data.users;
 
 import com.jspiders.taskapi.data.comments.Comment;
+import com.jspiders.taskapi.data.comments.CommentDTO;
 import com.jspiders.taskapi.data.tasks.TaskDTO;
 import lombok.Data;
 
@@ -14,5 +15,5 @@ public class AppUserDTO {
     private String mobile;
     private boolean isActive;
     private List<TaskDTO> taskList;
-    private List<Comment> commentList;
+    private List<CommentDTO> commentList;
 }

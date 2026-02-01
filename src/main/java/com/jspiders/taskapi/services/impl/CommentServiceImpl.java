@@ -2,6 +2,7 @@ package com.jspiders.taskapi.services.impl;
 
 import com.jspiders.taskapi.data.comments.*;
 import com.jspiders.taskapi.data.tasks.*;
+import com.jspiders.taskapi.data.users.AppUser;
 import com.jspiders.taskapi.data.users.AppUserRepository;
 import com.jspiders.taskapi.services.CommentService;
 import lombok.RequiredArgsConstructor;
@@ -28,16 +29,18 @@ public class CommentServiceImpl implements CommentService {
         log.info("inside createTask {}",createCommentRequest);
 
         //validate the userId if not present Throw NoSuchElementFoundException
-        appUserRepository.findById(createCommentRequest.getUserId()).orElseThrow();
+        AppUser appUser = appUserRepository.findById(createCommentRequest.getUserId()).orElseThrow();
 
         //Convert createTaskRequest to Task Entity
         Comment comment = mapper.convertValue(createCommentRequest, Comment.class);
 
         //set created and updated Dates
         comment.setCreatedAt(LocalDate.now());
+        comment.setAppUser(appUser);
 
         //save the task to db
         Comment savedComment = commentRepository.save(comment);
+        log.info("saved {}",savedComment);
 
         //return the response with savedTask
         return ResponseEntity.status(HttpStatus.CREATED).body(savedComment);

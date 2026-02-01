@@ -39,6 +39,7 @@ public class AppUser {
     private List<Task> taskList;
 
     @OneToMany(mappedBy = "appUser")
+    @JsonIgnore
     private List<Comment> commentList;
 
 

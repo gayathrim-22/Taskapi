@@ -1,5 +1,7 @@
 package com.jspiders.taskapi.services.impl;
 
+import com.jspiders.taskapi.data.comments.Comment;
+import com.jspiders.taskapi.data.comments.CommentDTO;
 import com.jspiders.taskapi.data.comments.CommentRepository;
 import com.jspiders.taskapi.data.tasks.Task;
 import com.jspiders.taskapi.data.tasks.TaskDTO;
@@ -107,16 +109,25 @@ public class AppUserServiceImpl2 implements AppUserService {
         AppUserDTO response=mapper.convertValue(appUser,AppUserDTO.class);
 
         List<Task> taskList=taskRepository.findByAppUserUserId(userId);
-
         List<TaskDTO> taskDtoList=new ArrayList<>();
+
+        List<Comment> commentList=commentRepository.findByAppUserUserId(userId);
+        List<CommentDTO> commentDTOList=new ArrayList<>();
+
         //convert task to taskDto
         for (Task task:taskList){
             TaskDTO taskDTO=mapper.convertValue(task,TaskDTO.class);
             taskDtoList.add(taskDTO);
         }
 
-        response.setTaskList(taskDtoList);
+        //convert task to taskDto
+        for (Comment comment:commentList){
+            CommentDTO commentDTO=mapper.convertValue(comment,CommentDTO.class);
+            commentDTOList.add(commentDTO);
+        }
 
+        response.setTaskList(taskDtoList);
+        response.setCommentList(commentDTOList);
         //return response object
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

@@ -1,9 +1,9 @@
 package com.jspiders.taskapi.data.comments;
 
-import com.jspiders.taskapi.data.users.AppUser;
+import lombok.Data;
 
 import java.time.LocalDate;
-
+@Data
 public class CommentDTO {
     private Long commentId;
     private String text;
