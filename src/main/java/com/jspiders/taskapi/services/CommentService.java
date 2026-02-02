@@ -5,9 +5,10 @@ import com.jspiders.taskapi.data.comments.CommentDTO;
 import com.jspiders.taskapi.data.comments.CreateCommentRequest;
 import com.jspiders.taskapi.data.comments.UpdateCommentRequest;
 import org.springframework.http.ResponseEntity;
-
+import org.springframework.stereotype.Service;
 import java.util.List;
 
+@Service
 public interface CommentService {
     ResponseEntity<Comment> createComment(CreateCommentRequest createCommentRequest);
     ResponseEntity<List<Comment>> getAllComments();
