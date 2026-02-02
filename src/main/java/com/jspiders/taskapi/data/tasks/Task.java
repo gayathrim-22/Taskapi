@@ -1,14 +1,18 @@
 package com.jspiders.taskapi.data.tasks;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.jspiders.taskapi.data.comments.Comment;
 import com.jspiders.taskapi.data.users.AppUser;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.ToString;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "task")
-@ToString(exclude = "appUser")
+@ToString(exclude = {"appUser","commentList"})
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,5 +37,7 @@ public class Task {
     @JoinColumn(name = "userId")
     private AppUser appUser;
 
-
+    @OneToMany
+    @JsonIgnore
+    private List<Comment> commentList;
 }

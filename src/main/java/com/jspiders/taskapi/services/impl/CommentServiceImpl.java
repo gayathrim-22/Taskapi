@@ -23,10 +23,13 @@ public class CommentServiceImpl implements CommentService {
     private final ObjectMapper mapper;
     private final CommentRepository commentRepository;
     private final AppUserRepository appUserRepository;
+    private final TaskRepository taskRepository;
 
     @Override
     public ResponseEntity<Comment> createComment(CreateCommentRequest createCommentRequest) {
         log.info("inside createTask {}",createCommentRequest);
+
+        Task task = taskRepository.findById(createCommentRequest.getUserId()).orElseThrow();
 
         //validate the userId if not present Throw NoSuchElementFoundException
         AppUser appUser = appUserRepository.findById(createCommentRequest.getUserId()).orElseThrow();
@@ -37,6 +40,8 @@ public class CommentServiceImpl implements CommentService {
         //set created and updated Dates
         comment.setCreatedAt(LocalDate.now());
         comment.setAppUser(appUser);
+//        comment.setText("Added create operation");
+        comment.setTask(task);
 
         //save the task to db
         Comment savedComment = commentRepository.save(comment);

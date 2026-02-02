@@ -1,5 +1,6 @@
 package com.jspiders.taskapi.data.comments;
 
+import com.jspiders.taskapi.data.tasks.Task;
 import com.jspiders.taskapi.data.users.AppUser;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -9,7 +10,7 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@ToString(exclude = "appUser")
+@ToString(exclude = {"appUser","task"})
 @Table(name = "comments")
 public class Comment {
     @Id
@@ -29,4 +30,7 @@ public class Comment {
     @JoinColumn(name = "userId")
     private AppUser appUser;
 
+    @ManyToOne
+    @JoinColumn(name = "taskId")
+    private Task task;
 }

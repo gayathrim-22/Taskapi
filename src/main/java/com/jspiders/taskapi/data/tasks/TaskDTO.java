@@ -1,7 +1,10 @@
 package com.jspiders.taskapi.data.tasks;
 
+import com.jspiders.taskapi.data.comments.CommentDTO;
 import com.jspiders.taskapi.data.users.AppUser;
 import lombok.Data;
+
+import java.util.List;
 
 @Data
 public class TaskDTO {
@@ -17,6 +20,8 @@ public class TaskDTO {
     private String createdAt;
 
     private String updatedAt;
+
+    private List<CommentDTO> commentList;
 
 //    private AppUser appUser;
 }

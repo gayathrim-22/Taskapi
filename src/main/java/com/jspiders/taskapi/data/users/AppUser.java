@@ -42,5 +42,4 @@ public class AppUser {
     @JsonIgnore
     private List<Comment> commentList;
 
-
 }
