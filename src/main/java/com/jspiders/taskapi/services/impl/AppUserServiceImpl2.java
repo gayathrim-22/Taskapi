@@ -120,7 +120,7 @@ public class AppUserServiceImpl2 implements AppUserService {
             taskDtoList.add(taskDTO);
         }
 
-        //convert task to taskDto
+        //convert comment to commentDto
         for (Comment comment:commentList){
             CommentDTO commentDTO=mapper.convertValue(comment,CommentDTO.class);
             commentDTOList.add(commentDTO);

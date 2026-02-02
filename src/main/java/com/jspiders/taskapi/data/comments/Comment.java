@@ -1,5 +1,6 @@
 package com.jspiders.taskapi.data.comments;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.jspiders.taskapi.data.tasks.Task;
 import com.jspiders.taskapi.data.users.AppUser;
 import jakarta.persistence.*;
@@ -32,5 +33,6 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "taskId")
+    @JsonBackReference
     private Task task;
 }
