@@ -1,6 +1,5 @@
 package com.jspiders.taskapi.data.users;
 
-import com.jspiders.taskapi.data.comments.Comment;
 import com.jspiders.taskapi.data.comments.CommentDTO;
 import com.jspiders.taskapi.data.tasks.TaskDTO;
 import lombok.Data;

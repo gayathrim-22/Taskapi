@@ -29,19 +29,19 @@ public class UserController{
         return response;
     }
 
-//    @PatchMapping
-//    public ResponseEntity<String> updateUserEmail(@RequestHeader Long userId,@RequestBody @Valid UpdateUserEmailRequest updateUserEmailRequest){
-//        log.info("this is UserController-->updateUser()");
-//        ResponseEntity<String> response = appUserService.updateUserEmail(userId,updateUserEmailRequest);
-//        return response;
-//    }
+    @PatchMapping("/patchEmail")
+    public ResponseEntity<String> updateUserEmail(@RequestHeader Long userId,@RequestBody @Valid UpdateUserEmailRequest updateUserEmailRequest){
+        log.info("this is UserController-->updateUser()");
+        ResponseEntity<String> response = appUserService.updateUserEmail(userId,updateUserEmailRequest);
+        return response;
+    }
 
-//    @PatchMapping
-//    public ResponseEntity<String> updateUserName(@RequestHeader Long userId,@RequestBody @Valid UpdateUserNameReq updateUserNameReq){
-//        log.info("this is UserController-->updateUser()");
-//        ResponseEntity<String> response = appUserService.updateUserName(userId,updateUserNameReq);
-//        return response;
-//    }
+    @PatchMapping("/patchUname")
+    public ResponseEntity<String> updateUserName(@RequestHeader Long userId,@RequestBody @Valid UpdateUserNameReq updateUserNameReq){
+        log.info("this is UserController-->updateUser()");
+        ResponseEntity<String> response = appUserService.updateUserName(userId,updateUserNameReq);
+        return response;
+    }
 
     @PatchMapping("/mobile")
     public ResponseEntity<String> updateUserMobile(@RequestHeader Long userId,@RequestBody @Valid UpdateUserMobileReq updateUserMobileReq){

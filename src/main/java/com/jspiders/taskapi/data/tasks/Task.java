@@ -1,6 +1,5 @@
 package com.jspiders.taskapi.data.tasks;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jspiders.taskapi.data.comments.Comment;
 import com.jspiders.taskapi.data.tags.Tags;
