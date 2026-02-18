@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController{
     //immutable
     private final AppUserServiceImpl2 appUserService;
-    @Autowired
+    @Autowired           // Instead we can use @RequiredArgsConstructor
     public UserController(AppUserServiceImpl2 appUserService) {
         this.appUserService = appUserService;
     }
@@ -31,21 +31,21 @@ public class UserController{
 
     @PatchMapping("/patchEmail")
     public ResponseEntity<String> updateUserEmail(@RequestHeader Long userId,@RequestBody @Valid UpdateUserEmailRequest updateUserEmailRequest){
-        log.info("this is UserController-->updateUser()");
+        log.info("this is UserController-->updateUserEmail()");
         ResponseEntity<String> response = appUserService.updateUserEmail(userId,updateUserEmailRequest);
         return response;
     }
 
     @PatchMapping("/patchUname")
     public ResponseEntity<String> updateUserName(@RequestHeader Long userId,@RequestBody @Valid UpdateUserNameReq updateUserNameReq){
-        log.info("this is UserController-->updateUser()");
+        log.info("this is UserController-->updateUserName()");
         ResponseEntity<String> response = appUserService.updateUserName(userId,updateUserNameReq);
         return response;
     }
 
     @PatchMapping("/mobile")
     public ResponseEntity<String> updateUserMobile(@RequestHeader Long userId,@RequestBody @Valid UpdateUserMobileReq updateUserMobileReq){
-        log.info("this is UserController-->updateUser()");
+        log.info("this is UserController-->updateUserMobile()");
         ResponseEntity<String> response = appUserService.updateUserMobile(userId,updateUserMobileReq);
         return response;
     }

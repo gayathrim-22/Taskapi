@@ -189,7 +189,7 @@ public class AppUserServiceImpl2 implements AppUserService {
 
     @Override
     public ResponseEntity<String> updateUserName(Long userId, UpdateUserNameReq updateUserNameReq) {
-        log.info("This is updateUserEmail");
+        log.info("This is updateUserName");
         //verify the user
         boolean isPresent=appUserRepository.existsById(userId);
         if (isPresent==false){
