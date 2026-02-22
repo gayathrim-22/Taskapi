@@ -34,11 +34,11 @@ public class AppUser {
     @Column(name = "isActive",nullable = false)
     private boolean isActive;
 
-    @OneToMany(mappedBy = "appUser")
+    @OneToMany(mappedBy = "appUser",cascade = CascadeType.ALL,orphanRemoval = true)
     @JsonIgnore
     private List<Task> taskList;
 
-    @OneToMany(mappedBy = "appUser")
+    @OneToMany(mappedBy = "appUser",cascade = CascadeType.ALL,orphanRemoval = true)
     @JsonIgnore
     private List<Comment> commentList;
 

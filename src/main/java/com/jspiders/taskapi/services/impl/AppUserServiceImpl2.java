@@ -226,4 +226,11 @@ public class AppUserServiceImpl2 implements AppUserService {
         return ResponseEntity.ok("Mobile number updated successfully");
     }
 
+    public void deleteUser(Long id){
+        if (!appUserRepository.existsById(id)){
+            throw new RuntimeException("user not found with id"+id);
+        }
+        appUserRepository.deleteById(id);
+    }
+
 }
